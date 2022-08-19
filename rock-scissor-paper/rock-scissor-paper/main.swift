@@ -1,6 +1,13 @@
 import Foundation
 
-let cardNumbersRange = 1...3
+class Card {
+    let scissor = 1
+    let rock = 2
+    let paper = 3
+}
+
+let card = Card()
+let cardNumbersRange = card.scissor...card.paper
 let player: [String: String] = ["computer": "컴퓨터", "user": "사용자"]
 
 func startGame() {
@@ -54,15 +61,14 @@ func judgeNumber(computerNumber: Int, userNumber: Int) -> Void {
     let computerAndUserNumber: [Int: Int] = [computerNumber: userNumber]
     
     switch computerAndUserNumber {
-    case [1: 2], [2: 3], [3: 1]:
+    case [card.scissor: card.rock], [card.rock: card.paper], [card.paper: card.scissor]:
         print("이겼습니다!\n")
-    case [1: 3], [2: 1], [3: 2]:
+    case [card.scissor: card.paper], [card.rock: card.scissor], [card.paper: card.rock]:
         print("졌습니다!\n")
     default:
         print("비겼습니다!\n")
+        startGame()
     }
-    
-    startGame()
 }
 
 startGame()
